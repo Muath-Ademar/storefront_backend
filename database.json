@@ -1,0 +1,9 @@
+{
+"dev":{
+    "driver": "pg",
+    "host": "0.0.0.0",
+    "database": "shopping",
+    "user": "shopping_user",
+    "password": "password123"
+  }
+}
