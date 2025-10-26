@@ -10,7 +10,6 @@ export class ProductStore {
     async index(): Promise<Product[]> {
         try {
             
-        
         const conn = await Client.connect()
         const sql = 'SELECT * FROM product'
         const result = await conn.query(sql)
@@ -36,14 +35,14 @@ export class ProductStore {
     
     async create(p: Product): Promise<Product> {
         try {
-           const conn = await Client.connect()
-           const sql = 'INSERT INTO product (name, price) VALUES($1, $2) RETURNING *' 
-           const result = await conn.query(sql, [p.name, p.price])
-           const product = result.rows[0]
-           conn.release()
+            const conn = await Client.connect()
+            const sql = 'INSERT INTO product (name, price) VALUES($1, $2) RETURNING *' 
+            const result = await conn.query(sql, [p.name, p.price])
+            const product = result.rows[0]
+            conn.release()
             return product
         } catch(err) {
-            throw new Error(`Could not add new Product ${name}. Error: ${err}`)
+            throw new Error(`Could not add new Product ${p.name}. Error: ${err}`)
         }
     }
 }

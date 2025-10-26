@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import product_routes from './handlers/product'
+import user_routes from './handlers/user'
+import order_routes from './handlers/order'
 
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
@@ -19,7 +21,11 @@ app.get('/', function (req: Request, res: Response) {
 })
 
 product_routes(app)
+user_routes(app)
+order_routes(app)
 
-app.listen(3000, function () {
-    console.log(`Server started on http://localhost:3000`);
+app.listen(address, function () {
+    console.log(`Server started on ${address}`);
 })
+
+export default app

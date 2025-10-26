@@ -5,5 +5,13 @@
     "database": "shopping",
     "user": "shopping_user",
     "password": "password123"
-  }
+  },
+"test": {
+    "driver": "pg",
+    "host" : "0.0.0.0",
+    "database": "shopping_test",
+    "user": "shopping_user",
+    "password": "password" 
+
+}
 }
