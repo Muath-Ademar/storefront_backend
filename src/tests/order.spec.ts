@@ -2,7 +2,7 @@ import {Order, OrderStore} from '../models/order'
 import supertest from 'supertest';
 import app from '../server';
 import jwt from 'jsonwebtoken';
-import { User, UserStore } from "../models/user";
+import { UserStore } from "../models/user";
 
 const userStore = new UserStore();
 const request = supertest(app);
@@ -15,12 +15,14 @@ describe('Order Model', () => {
     it('should have a getCurrentOrderByUser method', () => {
         expect(store.getCurrentOrderByUser).toBeDefined();
     });
+    it('should have an addProduct method', () => {
+        expect(store.addProduct).toBeDefined();
+    });
 
     it('create method should add an order', async () => {
         const order: Order = {
             user_id: 1,
             order_status: 'active',
-            products: [{ product_id: 1, quantity: 2 }]
         };
         const createdOrder = await store.create(order);
         expect(createdOrder.user_id).toBe(1);
@@ -31,6 +33,11 @@ describe('Order Model', () => {
         expect(currentOrder.user_id).toBe(1);
         expect(currentOrder.order_status).toBe('active');
     });
+
+    it('addProduct method should add a product to an order', async () => {
+        await expectAsync(store.addProduct(2, '1', '1')).toBeResolved();
+    });
+
 });
 
 describe('Order API Endpoints', () => {
@@ -50,8 +57,7 @@ describe('Order API Endpoints', () => {
             .set('Authorization', `Bearer ${token}`)
             .send({
                 user_id: 1,
-                order_status: 'active',
-                products: [{ product_id: 1, quantity: 2 }]
+                order_status: 'active'
             });
         expect(response.status).toBe(201);
         expect(response.body.user_id).toBe(1);
@@ -65,7 +71,17 @@ describe('Order API Endpoints', () => {
         expect(response.body.user_id).toBe(1);
         expect(response.body.order_status).toBe('active');
     });
-}); 
+    it('POST /orders/:userId/products/:productId should add a product to an order', async () => {
+        const response = await request
+            .post('/orders/1/products/1')
+            .set('Authorization', `Bearer ${token}`)
+            .send({
+                quantity: 2
+            });
+        expect(response.status).toBe(200);
+    });
+});
+
 
 
     
