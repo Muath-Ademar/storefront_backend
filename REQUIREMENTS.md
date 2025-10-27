@@ -5,59 +5,42 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show (args: product id)
-- Create (args: Product)[token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
-
-#### Users
-- Index [token required]
-- Show (args: id)[token required]
-- Create (args: User)[token required]
-
-#### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
-
-## Data Shapes
-#### Product
--  id
-- name
-- price
-- [OPTIONAL] category
-
-#### User
-- id
-- firstName
-- lastName
-- password
-
-#### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
-
-
-## API Endpoints 
-
-1- Products
-
 - GET /products — Get all products
 - GET /products/:id — Get a specific product by ID
 - POST /products — Create a new product (token required)
 
-2- Users
-
+#### Users
 - GET /users — Get all users (token required)
 - GET /users/:id — Get a specific user by ID (token required)
 - POST /users — Create a new user
 - POST /users/authenticate — Authenticate user and return a JWT token
 
-3- Orders
-
+#### Orders
 - GET /orders/current/:userId — Get the current active order for a user (token required)
 - POST /orders — Create a new order (token required)
+- POST /orders/:userId/products/:productId - Add product to order (token required)
+
+## Data Shapes
+#### Users
+- id → SERIAL PRIMARY KEY
+- firstName → VARCHAR(100)
+- lastName → VARCHAR(100)
+- password → TEXT
+
+#### Products
+- id → SERIAL PRIMARY KEY
+- name → VARCHAR(150)
+- price → INTEGER
+
+#### Orders
+- id → SERIAL PRIMARY KEY
+- user_id → INTEGER REFERENCES users(id)
+- status → VARCHAR(20)
+
+#### order_items
+- id → SERIAL PRIMARY KEY
+- user_id → INTEGER REFERENCES users(id)
+- product_id -> INTEGER REFERENCES product_id
+- quantity -> INTEGER
+
 
