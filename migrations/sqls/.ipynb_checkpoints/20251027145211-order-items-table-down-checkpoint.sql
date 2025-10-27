@@ -1,0 +1,1 @@
+Drop table order_items;
