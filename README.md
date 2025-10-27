@@ -10,12 +10,9 @@ This is the backend for the **Storefront** project, built with **TypeScript**, *
 - [Technologies](#technologies)  
 - [Installation](#installation)  
 - [Environment Variables](#environment-variables)  
-- [Database Setup](#database-setup)  
-- [Running the Server](#running-the-server)  
-- [API Endpoints](#api-endpoints)  
-- [Testing](#testing)  
-- [Project Structure](#project-structure)  
-- [License](#license)  
+- [NPM scripts](#npm-script)
+
+
 
 ---
 
@@ -50,3 +47,61 @@ This is the backend for the **Storefront** project, built with **TypeScript**, *
 git clone https://github.com/Muath-Ademar/storefront_backend.git
 cd storefront_backend
 ```
+
+2. Install dependencies:
+
+```bash
+npm i
+```
+
+3. Run migrations:
+
+```bash
+db-migrate up
+```
+
+---
+
+## Environment Variables
+
+```bash
+POSTGRES_HOST=localhost
+POSTGRES_DB=your_data_base
+POSTGRES_USER=your_db_user
+POSTGRES_PASSWORD=your_db_password
+BCRYPT_PASSWORD=your_secret_pepper
+SALT_ROUNDS=10
+TOKEN_SECRET=your_jwt_secret
+ENV=test
+```
+
+---
+
+
+## 🧠 NPM Scripts
+
+| Script | Description |
+|--------|--------------|
+| `npm run start` | Runs the server using **ts-node** (development mode). |
+| `npm run watch` | Automatically compiles TypeScript and restarts the server on changes. |
+| `npm run test` | Compiles TypeScript, runs database migrations for testing, executes Jasmine tests, and drops the test database afterward. |
+| `npm run tsc` | Compiles TypeScript files manually. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
