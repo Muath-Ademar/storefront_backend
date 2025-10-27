@@ -54,7 +54,7 @@ cd storefront_backend
 npm i
 ```
 
-3. Run migrations:
+3. Run migrations for database tables:
 
 ```bash
 db-migrate up
@@ -86,6 +86,7 @@ ENV=test
 | `npm run watch` | Automatically compiles TypeScript and restarts the server on changes. |
 | `npm run test` | Compiles TypeScript, runs database migrations for testing, executes Jasmine tests, and drops the test database afterward. |
 | `npm run tsc` | Compiles TypeScript files manually. |
+
 
 
 
