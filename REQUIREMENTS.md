@@ -40,3 +40,24 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+
+## API Endpoints 
+
+1- Products
+
+- GET /products — Get all products
+- GET /products/:id — Get a specific product by ID
+- POST /products — Create a new product (token required)
+
+2- Users
+
+- GET /users — Get all users (token required)
+- GET /users/:id — Get a specific user by ID (token required)
+- POST /users — Create a new user
+- POST /users/authenticate — Authenticate user and return a JWT token
+
+3- Orders
+
+- GET /orders/current/:userId — Get the current active order for a user (token required)
+- POST /orders — Create a new order (token required)
+
